@@ -12,14 +12,19 @@ import java.util.Date;
 public class Maaa {
     private String str;
 
-    public static void main(String[] args) throws ParseException {  //  都能判断存在与否
+    public static void main(String[] args){  //  都能判断存在与否
 
         //从 String 到 Date
         String ss = "2048-08-09 11:11:11";
         //ParseException
-        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf200 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        Date dd = sdf2.parse(ss);
+        Date dd = null;
+        try {
+            dd = sdf200.parse(ss);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         System.out.println(dd);
         System.out.println("ffffffffffffffffffddddddd");
