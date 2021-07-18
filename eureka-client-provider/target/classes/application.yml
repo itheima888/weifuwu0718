@@ -1,0 +1,20 @@
+# 配置应用基本信息和DB
+server:
+  port: 9091
+spring:
+  application:
+    name: eureka-client-provider
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/springcloud?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+# 配置eureka server
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+#开启Feign客户端日志  也可以直接扫描com.itheima.feign包  com.itheima.feign： debug
+logging:
+  level:
+    com.itheima.feign.UserFeign: debug

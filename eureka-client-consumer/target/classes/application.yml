@@ -1,0 +1,27 @@
+# 配置应用基本信息
+server:
+  port: 8080
+spring:
+  application:
+    name: eureka-client-consumer
+# 配置eureka server
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+# 配置负载均衡
+eureka-client-provider:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule # 配置为随机
+    ConnectTimeout: 1000 # 指的是建立连接所用的时间
+    ReadTimeout: 2000    # 指的是建立连接后从服务器读取到可用资源所用的时间
+    MaxAutoRetries: 0    # 最大重试次数(第一个服务)
+    MaxAutoRetriesNextServer: 0     # 最大重试下一个服务次数(集群的情况才会用到)
+    OkToRetryOnAllOperations: false # 是否对所有的请求都重试
+feign:
+  hystrix:
+    enabled: true
+#开启Feign客户端日志  也可以直接扫描com.itheima.feign包  com.itheima.feign： debug
+logging:
+  level:
+    com.itheima.feign.UserFeign: debug

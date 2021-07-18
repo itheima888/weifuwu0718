@@ -1,0 +1,24 @@
+#注释
+server:
+  port: 10010
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      # 路由(集合， - 代表集合)
+      routes:
+        - id: eureka-client-provider-route  # id唯一标识，(可自定义)
+         # uri: http://127.0.0.1:9091        # 路由服务提供方地址
+          uri: lb://eureka-client-provider   # 动态路由
+          predicates:                       # 路由拦截地址的规则(断言)
+            #- Path=/api/user/**             # 拦截以/api/user开头请求的url
+            - Path=/**         #匹配多级目录
+          filters:
+            - PrefixPath=/api/user/findById # 指定请求的前缀，我们在访问的时候就不需要添加了
+      default-filters:
+        - AddResponseHeader=X-Response-Default-MyName,itheima      -
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
